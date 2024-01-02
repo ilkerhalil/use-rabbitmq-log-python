@@ -1,0 +1,15 @@
+.venv
+.mypy_cache
+__pycache__
+*.egg-info
+.vscode
+node_modules
+.serverless
+.env.*
+.idea
+.env
+.env.test
+tests/pytest.ini
+.DS_Store
+.coverage
+coverage/
