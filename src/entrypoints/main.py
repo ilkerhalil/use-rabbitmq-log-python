@@ -10,11 +10,16 @@ def main() -> None:
         port=settings.RABBITMQ_PORT,
         username=settings.RABBITMQ_USER,
         password=settings.RABBITMQ_PASSWORD,
-        exchange='logs',
-        exchange_type='direct',
-        routing_key='test',
-        durable=True)
-    logging.basicConfig(level=logging.DEBUG,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',datefmt='%Y-%m-%d %H:%M:%S',handlers=[rabbitmq_handler])
+        declare_exchange=True
+        )
+    file_log_handler = logging.FileHandler("log.log")
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',datefmt='%Y-%m-%d %H:%M:%S',
+        handlers=[
+            rabbitmq_handler,
+            file_log_handler
+            ])
     logging.info('test info')
     logging.debug('test debug')
     logging.warning('test warning')

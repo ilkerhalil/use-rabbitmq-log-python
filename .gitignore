@@ -13,3 +13,4 @@ tests/pytest.ini
 .DS_Store
 .coverage
 coverage/
+*.log
