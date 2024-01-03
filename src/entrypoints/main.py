@@ -1,7 +1,7 @@
 import logging
 from python_logging_rabbitmq import RabbitMQHandler
 from config import Settings
-
+import psutil
 
 def main() -> None:
     settings = Settings()
@@ -10,7 +10,12 @@ def main() -> None:
         port=settings.RABBITMQ_PORT,
         username=settings.RABBITMQ_USER,
         password=settings.RABBITMQ_PASSWORD,
-        declare_exchange=True
+        declare_exchange=True,
+        fields={
+		'cpu_usage': psutil.cpu_percent(),
+        'ram_usage': psutil.virtual_memory(),
+		'env': 'production'
+	}
         )
     file_log_handler = logging.FileHandler("log.log")
     logging.basicConfig(
